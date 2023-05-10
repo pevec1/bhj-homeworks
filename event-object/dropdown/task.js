@@ -6,17 +6,13 @@ if (card) {
   alink = document.querySelectorAll('.dropdown__link')
 
   value.addEventListener('click', function (e) {
-    if (ul.className == 'dropdown__list') {
-      ul.className += ' dropdown__list_active'
-    }
+    ul.classList.toggle('dropdown__list_active')
   })
   for (let link of alink) {
     link.addEventListener('click', function (e) {
       e.preventDefault()
-      if (ul.className == 'dropdown__list dropdown__list_active') {
-        ul.className = 'dropdown__list'
-        value.textContent = link.textContent
-      }
+      ul.classList.toggle('dropdown__list_active')
+      value.textContent = link.textContent
     })
   }
 }

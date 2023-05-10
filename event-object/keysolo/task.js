@@ -17,12 +17,11 @@ class Game {
   }
 
   registerEvents () {
-    let self = this
-    document.addEventListener('keyup', function (e) {
-      if (self.currentSymbol.innerText.toLowerCase() == e.key.toLowerCase()) {
-        self.success()
+    document.addEventListener('keyup', (e) => {
+      if (this.currentSymbol.innerText.toLowerCase() == e.key.toLowerCase()) {
+        this.success()
       } else {
-        self.fail()
+        this.fail()
       }
     })
   }
