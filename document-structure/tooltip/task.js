@@ -13,9 +13,10 @@ for (let div of divs) {
       e.preventDefault()
       elem.classList.add('tooltip')
       elem.innerHTML = div.getAttribute('title')
+      let w = window.getComputedStyle(div).width
       elem.style = 'display: inline-block; position: absolute; margin-left: -100px; margin-top: -30px'
       div.parentNode.insertBefore(elem, div.nextSibling)
-      div.nextElementSibling.classList.add('tooltip_active')
+      elem.classList.add('tooltip_active')
     })
   }
 }
