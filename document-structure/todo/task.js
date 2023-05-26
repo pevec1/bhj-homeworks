@@ -13,14 +13,15 @@ class Todo {
     this.add.addEventListener('click', e => {
       e.preventDefault()
       let elem = document.createElement('div')
-      if (words !== '') {
+      if (words.trim() !== '') {
         elem.classList.add('task')
         elem.innerHTML += `<div class="task__title">
       ${words}
     </div>
     <a href="#" class="task__remove">&times;</a>`
         this.div.parentNode.insertBefore(elem, this.div.nextSibling)
-      }
+    }
+        this.input.value = ''
       elem.addEventListener('click', e => {
         //e.preventDefault()
         //console.log(e.target)
