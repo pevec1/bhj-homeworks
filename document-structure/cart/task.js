@@ -14,26 +14,32 @@ class Cart {
   getCartProduct (i) {
     let tick=0;
     this.buttonAdd(i).addEventListener('click', e => {
-    if (this.cart.children.length > 0) {
-        for (let j = 0; j < this.cart.children.length; j++) {
-          if (this.cart.children[j].getAttribute('data-id')==i) {
-            let excount = this.cart.children[j].children[1]
-        let total = Number(excount.textContent) + Number(this.getQuantity(i))
-        excount.textContent = total
+        let card = Array.from(this.cart.children)
+     let j=0
+        const productInCard = card.find((item, index, array) =>{
+            return array[index].attributes["data-id"].value==i
+        });
+        if(productInCard) {
+        
+        let total = Number(productInCard.children[1].textContent) + Number(this.getQuantity(i))
+        productInCard.children[1].textContent = total
         tick++
+        
+          // увеличивать количество у productInCard
+        
+        } else {
+            let elem = document.createElement('div')
+            elem.classList.add('cart__product')
+            elem.setAttribute('data-id', i)
+            elem.style.display = 'flex'
+            elem.innerHTML = `<img class="cart__product-image" src="p.png">
+                    <div class="cart__product-count">${this.getQuantity(i)}</div>`
+            this.cart.appendChild(elem)
+            elem.children[0].setAttribute('src', this.getProduct(i).children[1].src)   
+            
+          // добавлять новый элемент продукта
+        
         }
-      }
-    } 
-    if (tick==0){
-        let elem = document.createElement('div')
-        elem.classList.add('cart__product')
-        elem.setAttribute('data-id', i)
-        elem.style.display = 'flex'
-        elem.innerHTML = `<img class="cart__product-image" src="p.png">
-                <div class="cart__product-count">${this.getQuantity(i)}</div>`
-        this.cart.appendChild(elem)
-        elem.children[0].setAttribute('src', this.getProduct(i).children[1].src)   
-    }
     })
   }
   getQuantity (i) {
