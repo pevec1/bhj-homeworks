@@ -6,22 +6,18 @@ class Todo {
     this.tasks()
   }
   tasks() {
-    let words = ''
-    this.input.addEventListener('input', e => {
-      words = this.input.value
-    })
     this.add.addEventListener('click', e => {
       e.preventDefault()
       let elem = document.createElement('div')
-      if (words.trim() !== '') {
+      if (this.input.value.trim() !== '') {
         elem.classList.add('task')
         elem.innerHTML += `<div class="task__title">
-      ${words}
+      ${this.input.value}
     </div>
     <a href="#" class="task__remove">&times;</a>`
         this.div.parentNode.insertBefore(elem, this.div.nextSibling)
-    }
         this.input.value = ''
+    }
       elem.addEventListener('click', e => {
         //e.preventDefault()
         //console.log(e.target)
