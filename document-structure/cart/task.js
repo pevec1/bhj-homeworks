@@ -12,10 +12,8 @@ class Cart {
     }
   }
   getCartProduct (i) {
-    let tick=0;
     this.buttonAdd(i).addEventListener('click', e => {
         let card = Array.from(this.cart.children)
-     let j=0
         const productInCard = card.find((item, index, array) =>{
             return array[index].attributes["data-id"].value==i
         });
@@ -23,10 +21,6 @@ class Cart {
         
         let total = Number(productInCard.children[1].textContent) + Number(this.getQuantity(i))
         productInCard.children[1].textContent = total
-        tick++
-        
-          // увеличивать количество у productInCard
-        
         } else {
             let elem = document.createElement('div')
             elem.classList.add('cart__product')
@@ -36,9 +30,6 @@ class Cart {
                     <div class="cart__product-count">${this.getQuantity(i)}</div>`
             this.cart.appendChild(elem)
             elem.children[0].setAttribute('src', this.getProduct(i).children[1].src)   
-            
-          // добавлять новый элемент продукта
-        
         }
     })
   }
