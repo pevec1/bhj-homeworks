@@ -3,7 +3,7 @@ let elem = document.createElement('div')
 let title = '',
   elemActive = null
 for (let div of divs) {
-  //div.addEventListener('focus', () => {
+  div.addEventListener('focus', () => {
     let pos = div.getBoundingClientRect()
     div.addEventListener('click', e => {
       e.preventDefault()
@@ -13,6 +13,7 @@ for (let div of divs) {
       if(elemActive){
         elemActive.classList.remove('tooltip_active');
         elemActive = null;
+        console.log('tooltip remove1')
       }
 
       elem.classList.add('tooltip')
@@ -35,6 +36,7 @@ for (let div of divs) {
       }
     })
     })
+  })
     div.addEventListener('click', e => {
       e.preventDefault()
       console.log(div.title, elem)
